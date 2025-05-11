@@ -39,15 +39,17 @@ public class RegisterService {
             return null;
         }
 
-        String insertQuery = "INSERT INTO User (username, email, date_of_birth, contact_number) "
-                + "VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO User (username, email, password, date_of_birth, contact_number, image_path) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = dbConn.prepareStatement(insertQuery)) {
 
             stmt.setString(1, userModel.getUsername());
             stmt.setString(2, userModel.getEmail());
-            stmt.setDate(3, Date.valueOf(userModel.getDateOfBirth()));
-            stmt.setString(4, userModel.getContactNumber());
+            stmt.setString(3, userModel.getPassword());
+            stmt.setDate(4, Date.valueOf(userModel.getDateOfBirth()));
+            stmt.setString(5, userModel.getContactNumber());
+            stmt.setString(6, userModel.getImagePath());
 
             return stmt.executeUpdate() > 0;
 

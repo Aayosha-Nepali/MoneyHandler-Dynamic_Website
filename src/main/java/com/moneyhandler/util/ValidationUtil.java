@@ -34,7 +34,7 @@ public class ValidationUtil {
     }
 
     // 6. Validate minimum age (≥12 years)
-    public static boolean isAgeAtLeast16(LocalDate dob) {
+    public static boolean isAgeAtLeast12(LocalDate dob) {
         if (dob == null) return false;
         return Period.between(dob, LocalDate.now()).getYears() >= 12;
     }
@@ -58,4 +58,5 @@ public class ValidationUtil {
     public static boolean doPasswordsMatch(String password, String retypePassword) {
         return password != null && password.equals(retypePassword);
     }
+    
 }

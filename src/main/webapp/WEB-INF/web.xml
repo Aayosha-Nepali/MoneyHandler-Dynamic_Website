@@ -3,17 +3,13 @@
   <display-name>MoneyHandler</display-name>
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/css/*</url-pattern>
+    
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RegisterController</display-name>
-    <servlet-name>RegisterController</servlet-name>
-    <servlet-class>com.moneyHandler.controller.RegisterController</servlet-class>
-  </servlet>
+ 
   <servlet-mapping>
-    <servlet-name>RegisterController</servlet-name>
-    <url-pattern>/RegisterController</url-pattern>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/css/*</url-pattern>
+   
   </servlet-mapping>
 </web-app>
