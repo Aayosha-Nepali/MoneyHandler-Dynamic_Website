@@ -16,10 +16,14 @@
 <div class="sidebar">
     <img src="${contextPath}/resources/images/logo/MoneyHandler_small.png" class="sidebar-logo" alt="MoneyHandler Logo" />
     <ul>
-        <li><i class="fas fa-wallet"></i> Wallet</li>
-        <li><i class="fas fa-plus-circle"></i> Add Income</li>
-        <li><i class="fas fa-minus-circle"></i> Add Expense</li>
-        <li><i class="fas fa-chart-line"></i> Reports</li>
+        <li><a href="${contextPath}/user/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+        <li><a href="${contextPath}/user/reports"><i class="fas fa-file-alt"></i> Reports</a></li>
+        <li><a href="${contextPath}/user/incomes"><i class="fas fa-coins"></i> Incomes</a></li>
+        <li><a href="${contextPath}/user/expenses"><i class="fas fa-receipt"></i> Expenses</a></li>
+        <li><a href="${contextPath}/user/savings"><i class="fas fa-piggy-bank"></i> Savings</a></li>
+        <li><a href="${contextPath}/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+        <li><a href="${contextPath}/user/profile"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="${contextPath}/user/help"><i class="fas fa-question-circle"></i> Help</a></li>
         <li><a href="${contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
 </div>
@@ -28,7 +32,7 @@
 <main>
     <h1 class="dashboard-title">Welcome, ${sessionScope.currentUser.username} 👋</h1>
 
-    <!-- Dashboard Cards -->
+    <!-- Cards -->
     <div class="card-container">
         <div class="card">
             <i class="fas fa-arrow-down"></i>
@@ -47,23 +51,26 @@
         </div>
     </div>
 
-    <!-- Pie Chart -->
+    <!-- Charts -->
     <div class="chart-section">
         <h2>Financial Distribution</h2>
         <canvas id="pieChart"></canvas>
     </div>
 
-    <!-- Line Chart -->
     <div class="chart-section" style="margin-top: 3rem;">
-		<h2>Monthly Income, Expense &amp; Savings</h2>
+        <h2>Monthly Income, Expense &amp; Savings</h2>
         <canvas id="lineChart"></canvas>
     </div>
 </main>
 
-<!-- Charts Script -->
 <script>
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-    const pieChart = new Chart(pieCtx, {
+    const labels = ${chartLabels};
+    const incomeValues = ${incomeValues};
+    const expenseValues = ${expenseValues};
+    const savingValues = ${savingValues};
+
+    // Pie Chart
+    const pieChart = new Chart(document.getElementById('pieChart'), {
         type: 'pie',
         data: {
             labels: ['Income', 'Expenses', 'Savings'],
@@ -81,15 +88,15 @@
         }
     });
 
-    const lineCtx = document.getElementById('lineChart').getContext('2d');
-    const lineChart = new Chart(lineCtx, {
+    // Line Chart
+    const lineChart = new Chart(document.getElementById('lineChart'), {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], // Replace with dynamic labels if available
+            labels: labels,
             datasets: [
                 {
                     label: 'Income',
-                    data: [10000, 15000, 12000, 18000, 20000, 22000], // Replace with dynamic values
+                    data: incomeValues,
                     borderColor: '#065465',
                     backgroundColor: 'rgba(6,84,101,0.2)',
                     fill: true,
@@ -97,7 +104,7 @@
                 },
                 {
                     label: 'Expenses',
-                    data: [5000, 7000, 8000, 6000, 9000, 8500], // Replace with dynamic values
+                    data: expenseValues,
                     borderColor: '#aa6f73',
                     backgroundColor: 'rgba(170,111,115,0.2)',
                     fill: true,
@@ -105,7 +112,7 @@
                 },
                 {
                     label: 'Savings',
-                    data: [5000, 8000, 4000, 12000, 11000, 13500], // Replace with dynamic values
+                    data: savingValues,
                     borderColor: '#306844',
                     backgroundColor: 'rgba(48,104,68,0.2)',
                     fill: true,

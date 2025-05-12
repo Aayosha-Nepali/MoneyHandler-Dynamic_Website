@@ -39,7 +39,7 @@ public class RegisterService {
             return null;
         }
 
-        String insertQuery = "INSERT INTO User (username, email, password, date_of_birth, contact_number, image_path) "
+        String insertQuery = "INSERT INTO User (Username, Email, Password, Date Of Birth (DOB), Contact Number, image_path) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = dbConn.prepareStatement(insertQuery)) {

@@ -18,7 +18,7 @@ public class LoginService {
     }
 
     public UserModel findUserByEmail(String email) {
-        String sql = "SELECT * FROM User WHERE email = ?";
+        String sql = "SELECT * FROM User WHERE Email = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
