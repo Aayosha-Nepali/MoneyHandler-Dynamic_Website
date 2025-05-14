@@ -1,13 +1,17 @@
 package com.moneyhandler.controller;
 
+import com.moneyhandler.util.SessionUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 /**
- * Handles logout functionality.
+ * Handles user logout by invalidating the session.
  */
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
@@ -15,10 +19,7 @@ public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false); // don't create if not exists
-        if (session != null) {
-            session.invalidate();
-        }
-        resp.sendRedirect(req.getContextPath() + "/pages/login.jsp");
+        SessionUtil.logout(req);
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 }

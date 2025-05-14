@@ -14,16 +14,18 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <img src="${contextPath}/resources/images/logo/MoneyHandler_small.png" class="sidebar-logo" alt="MoneyHandler Logo" />
+    <img src="${contextPath}/resources/images/logo/MoneyHandler_tiny.png" class="sidebar-logo" alt="MoneyHandler Logo" />
     <ul>
-        <li><a href="${contextPath}/user/dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-        <li><a href="${contextPath}/user/reports"><i class="fas fa-file-alt"></i> Reports</a></li>
-        <li><a href="${contextPath}/user/incomes"><i class="fas fa-coins"></i> Incomes</a></li>
-        <li><a href="${contextPath}/user/expenses"><i class="fas fa-receipt"></i> Expenses</a></li>
-        <li><a href="${contextPath}/user/savings"><i class="fas fa-piggy-bank"></i> Savings</a></li>
-        <li><a href="${contextPath}/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+        <li><a href="${contextPath}/user/userdashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+        <li><a href="${contextPath}/user/report"><i class="fas fa-file-alt"></i> Reports</a></li>
+        <li><a href="${contextPath}/user/income"><i class="fas fa-coins"></i> Incomes</a></li>
+        <li><a href="${contextPath}/user/expense"><i class="fas fa-receipt"></i> Expenses</a></li>
+        <li><a href="${contextPath}/user/saving"><i class="fas fa-piggy-bank"></i> Savings</a></li>
+        <li><a href="${contextPath}/user/setting"><i class="fas fa-cog"></i> Settings</a></li>
         <li><a href="${contextPath}/user/profile"><i class="fas fa-user"></i> Profile</a></li>
         <li><a href="${contextPath}/user/help"><i class="fas fa-question-circle"></i> Help</a></li>
+        <li><a href="${contextPath}/user/aboutus"><i class="fas fa-info-circle"></i> About Us</a></li>
+        <li><a href="${contextPath}/user/contactus"><i class="fas fa-envelope"></i> Contact Us</a></li>
         <li><a href="${contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
 </div>

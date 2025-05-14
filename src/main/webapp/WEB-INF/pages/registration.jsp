@@ -24,11 +24,11 @@
                 <p class="success-message">${success}</p>
             </c:if>
 
-			<form action="${contextPath}/register" method="post" enctype="multipart/form-data">
+			<form action="${contextPath}/registration" method="post" enctype="multipart/form-data">
                 <input type="text" name="username" placeholder="Username" value="${username}" required>
                 <input type="email" name="email" placeholder="Email address" value="${email}" required>
                 <input type="date" name="dob" value="${dob}" required>
-                <input type="text" name="phone" placeholder="Phone Number" value="${phone}" required>
+                <input type="text" name="contact" placeholder="Phone Number" value="${phone}" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="retypePassword" placeholder="Retype Password" required>
                 <label for="profilePicture" class="upload-label">Upload Profile Picture:</label>

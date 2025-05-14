@@ -31,5 +31,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/linux/Desktop/AI Y2 S2/Data Structure and Specialist Programming/Week 23 - Introduction to JSTL/Tutorial/Java Jar Files copy/jar_files/itextpdf-5.5.13.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

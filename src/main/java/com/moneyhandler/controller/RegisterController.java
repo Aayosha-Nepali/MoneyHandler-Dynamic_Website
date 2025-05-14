@@ -48,12 +48,12 @@ public class RegisterController extends HttpServlet {
             if (Boolean.TRUE.equals(isAdded)) {
                 boolean imageSaved = uploadImage(req);
                 if (imageSaved) {
-                    req.setAttribute("success", "Account successfully created!");
-                    req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
+                    resp.sendRedirect(req.getContextPath() + "/login.jsp");  // redirect
                 } else {
                     req.setAttribute("error", "Image upload failed. Try again.");
                     req.getRequestDispatcher("/WEB-INF/pages/registration.jsp").forward(req, resp);
                 }
+
             } else {
                 req.setAttribute("error", "Failed to create account. Please try again later.");
                 req.getRequestDispatcher("/WEB-INF/pages/registration.jsp").forward(req, resp);
@@ -69,7 +69,7 @@ public class RegisterController extends HttpServlet {
         String username = req.getParameter("username");
         String dobStr = req.getParameter("dob");
         String email = req.getParameter("email");
-        String contact = req.getParameter("contactnumber");
+        String contact = req.getParameter("contact");
         String password = req.getParameter("password");
         String retypePassword = req.getParameter("retypePassword");
 
@@ -107,7 +107,7 @@ public class RegisterController extends HttpServlet {
         String username = req.getParameter("username");
         LocalDate dob = LocalDate.parse(req.getParameter("dob"));
         String email = req.getParameter("email");
-        String contact = req.getParameter("contactnumber");
+        String contact = req.getParameter("contact");
         String rawPassword = req.getParameter("password");
         String encryptedPassword = PasswordUtil.encrypt(username, rawPassword);
 

@@ -14,20 +14,20 @@ public class IncomeDAO {
         List<IncomeModel> incomes = new ArrayList<>();
 
         StringBuilder sql = new StringBuilder(
-            "SELECT i.incomeid, i.amount, i.date, it.typename, it.source " +
-            "FROM income i " +
-            "JOIN incometype it ON i.incometypeid = it.incometypeid " +
-            "WHERE i.userid = ?"
+            "SELECT i.IncomeID, i.Amount, i.Date, it.TypeName, it.Source " +
+            "FROM Income i " +
+            "JOIN IncomeType it ON i.IncomeTypeID = it.IncomeTypeID " +
+            "WHERE i.UserID = ?"
         );
 
         if (typeFilter != null && !typeFilter.equals("all")) {
-            sql.append(" AND it.typename = ?");
+            sql.append(" AND it.TypeName = ?");
         }
         if (fromDate != null) {
-            sql.append(" AND i.date >= ?");
+            sql.append(" AND i.Date >= ?");
         }
         if (toDate != null) {
-            sql.append(" AND i.date <= ?");
+            sql.append(" AND i.Date <= ?");
         }
 
         try (Connection conn = DbConfig.getDbConnection();
@@ -63,10 +63,46 @@ public class IncomeDAO {
 
         return incomes;
     }
+    public List<IncomeModel> searchIncomes(int userId, String keyword) {
+        List<IncomeModel> results = new ArrayList<>();
+        String sql = "SELECT i.IncomeID, i.Amount, i.Date, it.TypeName, it.Source " +
+                     "FROM Income i " +
+                     "JOIN IncomeType it ON i.IncomeTypeID = it.IncomeTypeID " +
+                     "WHERE i.UserID = ? AND " +
+                     "(it.TypeName LIKE ? OR it.Source LIKE ? OR i.Amount LIKE ? OR i.Date LIKE ?) " +
+                     "ORDER BY i.Date DESC";
 
+        try (Connection conn = DbConfig.getDbConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            String keywordPattern = "%" + keyword + "%";
+            stmt.setString(2, keywordPattern);
+            stmt.setString(3, keywordPattern);
+            stmt.setString(4, keywordPattern);
+            stmt.setString(5, keywordPattern);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                IncomeModel income = new IncomeModel();
+                income.setIncomeId(rs.getInt("incomeid"));
+                income.setAmount(rs.getDouble("amount"));
+                income.setDate(rs.getDate("date").toLocalDate());
+                income.setTypeName(rs.getString("typename"));
+                income.setSource(rs.getString("source"));
+                results.add(income);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return results;
+    }
+    
     // Add new income
     public boolean addIncome(IncomeModel income) {
-        String sql = "INSERT INTO income (userid, incometypeid, amount, date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Income (UserID, IncomeTypeID, Amount, Date) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -86,8 +122,8 @@ public class IncomeDAO {
 
     // Get a single income record
     public IncomeModel getIncomeById(int incomeId) {
-        String sql = "SELECT i.incomeid, i.userid, i.incometypeid, i.amount, i.date, it.typename, it.source " +
-                     "FROM income i JOIN incometype it ON i.incometypeid = it.incometypeid WHERE i.incomeid = ?";
+        String sql = "SELECT i.IncomeID, i.UserID, i.IncomeTypeID, i.Amount, i.Date, it.TypeName, it.Source " +
+                     "FROM Income i JOIN IncomeType it ON i.IncomeTypeID = it.IncomeTypeID WHERE i.IncomeID = ?";
 
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -116,7 +152,7 @@ public class IncomeDAO {
 
     // Update an income
     public boolean updateIncome(IncomeModel income) {
-        String sql = "UPDATE income SET incometypeid = ?, amount = ?, date = ? WHERE incomeid = ?";
+        String sql = "UPDATE Income SET IncomeTypeID = ?, Amount = ?, Date = ? WHERE IncomeID = ?";
 
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -125,6 +161,7 @@ public class IncomeDAO {
             stmt.setDouble(2, income.getAmount());
             stmt.setDate(3, Date.valueOf(income.getDate()));
             stmt.setInt(4, income.getIncomeId());
+            stmt.setInt(5, income.getUserId());
 
             return stmt.executeUpdate() > 0;
 
@@ -135,13 +172,15 @@ public class IncomeDAO {
     }
 
     // Delete an income
-    public boolean deleteIncome(int incomeId) {
-        String sql = "DELETE FROM income WHERE incomeid = ?";
+    
+    public boolean deleteIncome(int incomeId, int userId) {
+        String sql = "DELETE FROM Income WHERE IncomeID = ?";
 
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, incomeId);
+            stmt.setInt(2, userId);
             return stmt.executeUpdate() > 0;
 
         } catch (Exception e) {
@@ -149,4 +188,5 @@ public class IncomeDAO {
             return false;
         }
     }
+    
 }

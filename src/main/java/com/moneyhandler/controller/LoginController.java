@@ -3,6 +3,7 @@ package com.moneyhandler.controller;
 import com.moneyhandler.model.UserModel;
 import com.moneyhandler.service.LoginService;
 import com.moneyhandler.util.PasswordUtil;
+import com.moneyhandler.util.SessionUtil;
 import com.moneyhandler.util.ValidationUtil;
 
 import jakarta.servlet.ServletException;
@@ -18,7 +19,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // ✅ Forward to protected JSP inside WEB-INF
+        //  Forward to protected JSP inside WEB-INF
         req.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(req, resp);
     }
 
@@ -42,13 +43,14 @@ public class LoginController extends HttpServlet {
 
         String decryptedPassword = PasswordUtil.decrypt(user.getPassword(), user.getUsername());
         if (decryptedPassword != null && decryptedPassword.equals(password)) {
-            HttpSession session = req.getSession();
-            session.setAttribute("loggedInUser", user);
+            @SuppressWarnings("unused")
+			HttpSession session = req.getSession();
+            SessionUtil.setLoggedInUser(req, user);
 
             if ("admin@moneyhandler.com".equalsIgnoreCase(email)) {
-                resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
+                resp.sendRedirect(req.getContextPath() + "/admin/admindashboard");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/user/dashboard");
+                resp.sendRedirect(req.getContextPath() + "/user/userdashboard");
             }
         } else {
             req.setAttribute("error", "Invalid email or password.");
