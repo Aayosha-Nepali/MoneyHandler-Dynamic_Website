@@ -24,9 +24,9 @@ public class IncomeTypeDAO {
 
             while (rs.next()) {
                 IncomeTypeModel type = new IncomeTypeModel();
-                type.setIncomeTypeId(rs.getInt("incometypeid"));
-                type.setTypeName(rs.getString("typename"));
-                type.setSource(rs.getString("source"));
+                type.setIncomeTypeId(rs.getInt("IncomeTypeID"));
+                type.setTypeName(rs.getString("TypeName"));
+                type.setSource(rs.getString("Source"));
                 types.add(type);
             }
 

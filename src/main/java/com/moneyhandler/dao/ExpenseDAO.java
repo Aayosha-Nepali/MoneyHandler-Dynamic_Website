@@ -49,11 +49,11 @@ public class ExpenseDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ExpenseModel expense = new ExpenseModel();
-                expense.setExpenseId(rs.getInt("expenseid"));
-                expense.setAmount(rs.getDouble("amount"));
-                expense.setDate(rs.getDate("date").toLocalDate());
-                expense.setTypeName(rs.getString("typename"));
-                expense.setVendor(rs.getString("vendor"));
+                expense.setExpenseId(rs.getInt("ExpenseID"));
+                expense.setAmount(rs.getDouble("Amount"));
+                expense.setDate(rs.getDate("Date").toLocalDate());
+                expense.setTypeName(rs.getString("TypeName"));
+                expense.setVendor(rs.getString("Vendor"));
                 expenses.add(expense);
             }
 
@@ -97,13 +97,13 @@ public class ExpenseDAO {
 
             if (rs.next()) {
                 ExpenseModel expense = new ExpenseModel();
-                expense.setExpenseId(rs.getInt("expenseid"));
-                expense.setUserId(rs.getInt("userid"));
-                expense.setExpenseTypeId(rs.getInt("expensetypeid"));
-                expense.setAmount(rs.getDouble("amount"));
-                expense.setDate(rs.getDate("date").toLocalDate());
-                expense.setTypeName(rs.getString("typename"));
-                expense.setVendor(rs.getString("vendor"));
+                expense.setExpenseId(rs.getInt("ExpenseID"));
+                expense.setUserId(rs.getInt("UserID"));
+                expense.setExpenseTypeId(rs.getInt("ExpenseTypeID"));
+                expense.setAmount(rs.getDouble("Amount"));
+                expense.setDate(rs.getDate("Date").toLocalDate());
+                expense.setTypeName(rs.getString("Typename"));
+                expense.setVendor(rs.getString("Vendor"));
                 return expense;
             }
 
@@ -173,11 +173,11 @@ public class ExpenseDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ExpenseModel expense = new ExpenseModel();
-                expense.setExpenseId(rs.getInt("expenseid"));
-                expense.setAmount(rs.getDouble("amount"));
-                expense.setDate(rs.getDate("date").toLocalDate());
-                expense.setTypeName(rs.getString("typename"));
-                expense.setVendor(rs.getString("vendor"));
+                expense.setExpenseId(rs.getInt("ExpenseID"));
+                expense.setAmount(rs.getDouble("Amount"));
+                expense.setDate(rs.getDate("Date").toLocalDate());
+                expense.setTypeName(rs.getString("Typename"));
+                expense.setVendor(rs.getString("Vendor"));
                 results.add(expense);
             }
 

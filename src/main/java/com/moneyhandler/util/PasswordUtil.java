@@ -74,7 +74,7 @@ public class PasswordUtil {
     }
 
     // Decrypt the AES-GCM encrypted password using the original username
-    public static String decrypt(String encryptedPassword, String username) {
+    public static String decrypt( String username, String encryptedPassword) {
         try {
             byte[] decoded = Base64.getDecoder().decode(encryptedPassword.getBytes(UTF_8));
             ByteBuffer bb = ByteBuffer.wrap(decoded);

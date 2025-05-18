@@ -40,7 +40,7 @@ public class AddIncomeController extends HttpServlet {
 
         List<IncomeTypeModel> types = incomeTypeDAO.getAllTypes();
         req.setAttribute("incomeTypes", types);
-        req.getRequestDispatcher("/WEB-INF/pages/user/addincome.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/user/addincome.jsp").forward(req, resp);
     }
 
     @Override

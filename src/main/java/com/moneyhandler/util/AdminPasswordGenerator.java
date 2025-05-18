@@ -2,10 +2,10 @@ package com.moneyhandler.util;
 
 public class AdminPasswordGenerator {
     public static void main(String[] args) {
-        String username = "admin";
-        String plainPassword = "MoneyHandlerAdmin@123"; //password
+        String email = "aalu@gmail.com";
+        String plainPassword = "Aalu@123"; //password
 
-        String encrypted = PasswordUtil.encrypt(username, plainPassword);
+        String encrypted = PasswordUtil.encrypt(email, plainPassword);
         System.out.println("Encrypted Password: " + encrypted);
     }
 }

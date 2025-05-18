@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Controller for rendering the user dashboard.
  */
-@WebServlet("/user/dashboard")
+@WebServlet("/userdashboard")
 public class UserDashboardController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -50,6 +50,6 @@ public class UserDashboardController extends HttpServlet {
         req.setAttribute("expenseValues", chartData.get("expense"));
         req.setAttribute("savingValues", chartData.get("savings"));
 
-        req.getRequestDispatcher("/WEB-INF/pages/user_dashboard.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/userdashboard.jsp").forward(req, resp);
     }
 }

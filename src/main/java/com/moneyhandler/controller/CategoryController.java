@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Controller for managing income/expense categories by admin.
  */
-@WebServlet("/admin/categories")
+@WebServlet("/categories")
 public class CategoryController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

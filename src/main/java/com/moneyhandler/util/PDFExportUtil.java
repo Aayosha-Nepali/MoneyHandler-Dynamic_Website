@@ -4,6 +4,9 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 import com.moneyhandler.model.TransactionModel;
+import com.moneyhandler.model.UserModel;
+import com.moneyhandler.model.AdminTransactionModel; // Add this at the top with other imports
+import com.moneyhandler.model.ContactModel;
 
 import java.io.OutputStream;
 import java.util.List;
@@ -69,4 +72,114 @@ public class PDFExportUtil {
             table.addCell(tx.getDate().toString());
         }
     }
+    // for admin to export users 
+    public static void exportUsersToPDF(List<UserModel> users, OutputStream outputStream) throws DocumentException {
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+
+        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.DARK_GRAY);
+        Paragraph title = new Paragraph("User Report", titleFont);
+        title.setAlignment(Element.ALIGN_CENTER);
+        title.setSpacingAfter(15f);
+        document.add(title);
+
+        PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(100f);
+        table.setWidths(new float[]{1.5f, 3f, 2f, 2f, 2f});
+
+        Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        Stream.of("Username", "Email", "DOB", "Contact", "Image")
+            .forEach(col -> {
+                PdfPCell cell = new PdfPCell(new Phrase(col, headFont));
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cell);
+            });
+
+        for (UserModel user : users) {
+            table.addCell(user.getUsername());
+            table.addCell(user.getEmail());
+            table.addCell(user.getDateOfBirth().toString());
+            table.addCell(user.getContactNumber());
+            table.addCell(user.getImagePath() != null ? user.getImagePath() : "-");
+        }
+
+        document.add(table);
+        document.close();
+    }
+ // for admin to export all transactions
+    public static void exportTransactionsToPDF(List<AdminTransactionModel> transactions, OutputStream outputStream) throws DocumentException {
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+
+        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.DARK_GRAY);
+        Paragraph title = new Paragraph("All Transactions Report", titleFont);
+        title.setAlignment(Element.ALIGN_CENTER);
+        title.setSpacingAfter(15f);
+        document.add(title);
+
+        PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(100f);
+        table.setWidths(new float[]{1.2f, 2f, 2f, 2f, 2f});
+
+        Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        Stream.of("Username", "Type", "Category", "Amount (Rs.)", "Date")
+            .forEach(col -> {
+                PdfPCell cell = new PdfPCell(new Phrase(col, headFont));
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cell);
+            });
+
+        for (AdminTransactionModel txn : transactions) {
+            table.addCell(txn.getUsername());
+            table.addCell(txn.getType());
+            table.addCell(txn.getCategory());
+            table.addCell(String.format("Rs. %.2f", txn.getAmount()));
+            table.addCell(txn.getDate().toString());
+        }
+
+        document.add(table);
+        document.close();
+    }
+
+    public static void exportContactMessagesToPDF(List<ContactModel> messages, OutputStream outputStream) throws DocumentException {
+        Document document = new Document(PageSize.A4);
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+
+        Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.DARK_GRAY);
+        Paragraph title = new Paragraph("Contact Messages Report", titleFont);
+        title.setAlignment(Element.ALIGN_CENTER);
+        title.setSpacingAfter(15f);
+        document.add(title);
+
+        PdfPTable table = new PdfPTable(5);
+        table.setWidthPercentage(100f);
+        table.setWidths(new float[]{1.5f, 2.5f, 2.5f, 3f, 1.5f});
+
+        Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        Stream.of("Name", "Email", "Subject", "Message", "Status")
+            .forEach(col -> {
+                PdfPCell cell = new PdfPCell(new Phrase(col, headFont));
+                cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cell);
+            });
+
+        for (ContactModel msg : messages) {
+            table.addCell(msg.getName());
+            table.addCell(msg.getEmail());
+            table.addCell(msg.getSubject());
+            table.addCell(msg.getMessage());
+            table.addCell(msg.getStatus());
+        }
+
+        document.add(table);
+        document.close();
+    }
+
+
 }

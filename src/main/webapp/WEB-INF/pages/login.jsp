@@ -20,7 +20,7 @@
             </c:if>
 
             <form action="${contextPath}/login" method="post">
-                <input type="email" name="email" placeholder="Email address" required />
+                <input type="email" name="email" placeholder="Email address" value="${savedEmail != null ? savedEmail : ''}" required />
                 <input type="password" name="password" placeholder="Password" required />
                 <button type="submit">Login &#x27A4;</button>
             </form>

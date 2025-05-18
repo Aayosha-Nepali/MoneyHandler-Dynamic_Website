@@ -14,7 +14,7 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <img src="${contextPath}/resources/images/logo/MoneyHandler_small.png" class="sidebar-logo" alt="MoneyHandler Logo" />
+    <img src="${contextPath}/resources/images/logo/MoneyHandler_big.png" class="sidebar-logo" alt="MoneyHandler Logo" />
     <ul>
         <li><a href="${contextPath}/user/userdashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
         <li><a href="${contextPath}/user/report"><i class="fas fa-file-alt"></i> Reports</a></li>

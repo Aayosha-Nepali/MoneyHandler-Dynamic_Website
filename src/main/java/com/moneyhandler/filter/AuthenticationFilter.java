@@ -1,20 +1,17 @@
 package com.moneyhandler.filter;
 
+import com.moneyhandler.model.UserModel;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
 /**
- * Filters protected pages to ensure user is logged in.
+ * Filter to enforce session-based authentication.
  */
-@WebFilter(urlPatterns = {
-    "/pages/user/*",
-    "/pages/admin/*"
-})
+@WebFilter(urlPatterns = {"/user/*", "/admin/*"})
 public class AuthenticationFilter implements Filter {
 
     @Override
@@ -23,15 +20,20 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-
         HttpSession session = req.getSession(false);
+        UserModel user = (session != null) ? (UserModel) session.getAttribute("loggedInUser") : null;
 
-        boolean loggedIn = session != null && session.getAttribute("loggedInUser") != null;
+        String path = req.getRequestURI();
 
-        if (loggedIn) {
-            chain.doFilter(request, response);
+        if (user == null) {
+            // Not logged in
+            resp.sendRedirect(req.getContextPath() + "/login");
+        } else if (path.startsWith(req.getContextPath() + "/admin") &&
+                !"admin@moneyhandler.com".equalsIgnoreCase(user.getEmail())) {
+            // Trying to access admin route but not admin
+            resp.sendRedirect(req.getContextPath() + "/login");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/login.jsp");
+            chain.doFilter(request, response);
         }
     }
 }

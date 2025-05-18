@@ -17,7 +17,7 @@ public class UserDAO {
      * Fetches a user by email (used in login).
      */
     public UserModel getUserByEmail(String email) {
-        String sql = "SELECT * FROM users WHERE email = ?";
+        String sql = "SELECT * FROM User WHERE Email = ?";
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -38,7 +38,7 @@ public class UserDAO {
      * Fetches a user by ID (used for profile).
      */
     public UserModel getUserById(int userId) {
-        String sql = "SELECT * FROM users WHERE userid = ?";
+        String sql = "SELECT * FROM User WHERE UserID = ?";
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -59,7 +59,7 @@ public class UserDAO {
      * Updates user profile.
      */
     public boolean updateUser(UserModel user) {
-        String sql = "UPDATE users SET username = ?, email = ?, dob = ?, contactnumber = ? WHERE userid = ?";
+        String sql = "UPDATE User SET Username = ?, Email = ?, DOB = ?, ContactNumber = ? WHERE UserID = ?";
         try (Connection conn = DbConfig.getDbConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -82,13 +82,30 @@ public class UserDAO {
      */
     private UserModel extractUser(ResultSet rs) throws SQLException {
         UserModel user = new UserModel();
-        user.setUserId(rs.getInt("userid"));
-        user.setUsername(rs.getString("username"));
-        user.setEmail(rs.getString("email"));
-        user.setDateOfBirth(rs.getDate("dob").toLocalDate());
-        user.setContactNumber(rs.getString("contactnumber"));
-        user.setPassword(rs.getString("password"));
+        user.setUserId(rs.getInt("UserID"));
+        user.setUsername(rs.getString("Username"));
+        user.setEmail(rs.getString("Email"));
+        user.setDateOfBirth(rs.getDate("DOB").toLocalDate());
+        user.setContactNumber(rs.getString("ContactNumber"));
+        user.setPassword(rs.getString("Password"));
         user.setImagePath(rs.getString("image_path"));
         return user;
     }
+    public boolean updateUserProfile(UserModel user) {
+        String sql = "UPDATE User SET ContactNumber = ?, Password = ?, image_path = ? WHERE UserID = ?";
+        try (Connection conn = DbConfig.getDbConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, user.getContactNumber());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getImagePath());
+            stmt.setInt(4, user.getUserId());
+
+            return stmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

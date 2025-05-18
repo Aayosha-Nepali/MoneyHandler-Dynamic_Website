@@ -18,6 +18,10 @@ public class LoginService {
     }
 
     public UserModel findUserByEmail(String email) {
+    	if (dbConn == null) {
+            System.err.println("Database connection is not available.");
+            return null;
+        }
         String sql = "SELECT * FROM User WHERE Email = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(sql)) {
             stmt.setString(1, email);
@@ -25,12 +29,12 @@ public class LoginService {
 
             if (rs.next()) {
                 UserModel user = new UserModel();
-                user.setUserId(rs.getInt("user_id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                user.setDateOfBirth(rs.getDate("date_of_birth").toLocalDate());
-                user.setContactNumber(rs.getString("contact_number"));
-                user.setPassword(rs.getString("password"));
+                user.setUserId(rs.getInt("UserID"));
+                user.setUsername(rs.getString("Username"));
+                user.setEmail(rs.getString("Email"));
+                user.setDateOfBirth(rs.getDate("DOB").toLocalDate());
+                user.setContactNumber(rs.getString("ContactNumber"));
+                user.setPassword(rs.getString("Password"));
                 return user;
             }
         } catch (SQLException e) {

@@ -49,11 +49,11 @@ public class IncomeDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 IncomeModel income = new IncomeModel();
-                income.setIncomeId(rs.getInt("incomeid"));
-                income.setAmount(rs.getDouble("amount"));
-                income.setDate(rs.getDate("date").toLocalDate());
-                income.setTypeName(rs.getString("typename"));
-                income.setSource(rs.getString("source"));
+                income.setIncomeId(rs.getInt("IncomeID"));
+                income.setAmount(rs.getDouble("Amount"));
+                income.setDate(rs.getDate("Date").toLocalDate());
+                income.setTypeName(rs.getString("TypeName"));
+                income.setSource(rs.getString("Source"));
                 incomes.add(income);
             }
 
@@ -85,11 +85,11 @@ public class IncomeDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 IncomeModel income = new IncomeModel();
-                income.setIncomeId(rs.getInt("incomeid"));
-                income.setAmount(rs.getDouble("amount"));
-                income.setDate(rs.getDate("date").toLocalDate());
-                income.setTypeName(rs.getString("typename"));
-                income.setSource(rs.getString("source"));
+                income.setIncomeId(rs.getInt("IncomeID"));
+                income.setAmount(rs.getDouble("Amount"));
+                income.setDate(rs.getDate("Date").toLocalDate());
+                income.setTypeName(rs.getString("TypeName"));
+                income.setSource(rs.getString("Source"));
                 results.add(income);
             }
 
@@ -133,13 +133,13 @@ public class IncomeDAO {
 
             if (rs.next()) {
                 IncomeModel income = new IncomeModel();
-                income.setIncomeId(rs.getInt("incomeid"));
-                income.setUserId(rs.getInt("userid"));
-                income.setIncomeTypeId(rs.getInt("incometypeid"));
-                income.setAmount(rs.getDouble("amount"));
-                income.setDate(rs.getDate("date").toLocalDate());
-                income.setTypeName(rs.getString("typename"));
-                income.setSource(rs.getString("source"));
+                income.setIncomeId(rs.getInt("IncomeID"));
+                income.setUserId(rs.getInt("UserID"));
+                income.setIncomeTypeId(rs.getInt("IncomeTypeID"));
+                income.setAmount(rs.getDouble("Amount"));
+                income.setDate(rs.getDate("Date").toLocalDate());
+                income.setTypeName(rs.getString("TypeName"));
+                income.setSource(rs.getString("Source"));
                 return income;
             }
 

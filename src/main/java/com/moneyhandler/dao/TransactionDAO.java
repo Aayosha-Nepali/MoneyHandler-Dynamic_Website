@@ -71,5 +71,40 @@ public class TransactionDAO {
             return 0.0;
         }
     }
+    public Map<String, Double> getGlobalMonthlyIncome() {
+        String sql = "SELECT MONTH(date) AS month, SUM(amount) AS total " +
+                     "FROM transactions WHERE type = 'income' " +
+                     "GROUP BY MONTH(date) ORDER BY MONTH(date)";
+        return getMonthlyTotals(sql);
+    }
+
+    public Map<String, Double> getGlobalMonthlyExpense() {
+        String sql = "SELECT MONTH(date) AS month, SUM(amount) AS total " +
+                     "FROM transactions WHERE type = 'expense' " +
+                     "GROUP BY MONTH(date) ORDER BY MONTH(date)";
+        return getMonthlyTotals(sql);
+    }
+
+    // Overloaded helper
+    private Map<String, Double> getMonthlyTotals(String sql) {
+        Map<String, Double> monthlyTotals = new LinkedHashMap<>();
+        try (Connection conn = DbConfig.getDbConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int monthNumber = rs.getInt("month");
+                double total = rs.getDouble("total");
+                String monthName = Month.of(monthNumber).name(); // e.g., JANUARY
+                monthName = monthName.charAt(0) + monthName.substring(1).toLowerCase(); // Jan
+                monthlyTotals.put(monthName, total);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return monthlyTotals;
+    }
+
 
 }

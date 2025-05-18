@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+/* Reset & Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f6e0b5;
+  color: #182c25;
+  display: flex;
+}
+
+/* Sidebar (reuse from dashboard) */
+.sidebar {
+  width: 250px;
+  background-color: #2c4c3b;
+  color: white;
+  min-height: 100vh;
+  padding-top: 1rem;
+}
+
+.sidebar-logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #455b55;
+}
+
+/* Main Profile Section */
+.profile-container {
+  flex: 1;
+  padding: 40px 60px;
+  background-color: #ffffff;
+}
+
+.profile-container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #065465;
+}
+
+/* Profile Form */
+form {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.profile-image {
+  flex: 1;
+  text-align: center;
+}
+
+.profile-image img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 3px solid #306844;
+}
+
+.profile-image label {
+  display: block;
+  margin-top: 10px;
+  background-color: #aa6f73;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.profile-image input[type="file"] {
+  display: none;
+}
+
+.profile-info {
+  flex: 2;
+}
+
+.profile-info label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.profile-info input {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #a39193;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+}
+
+.profile-info input:read-only {
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
+.profile-info button {
+  margin-top: 30px;
+  padding: 12px 20px;
+  background-image: linear-gradient(to right, #065465, #046276);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.profile-info button:hover {
+  opacity: 0.95;
+}
+
+/* Message Styling */
+.success-message,
+.error-message {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+}

@@ -34,7 +34,7 @@ public class AddExpenseController extends HttpServlet {
 
         List<ExpenseTypeModel> expenseTypes = expenseTypeDAO.getAllTypes();
         req.setAttribute("expenseTypeList", expenseTypes);
-        req.getRequestDispatcher("/WEB-INF/pages/addexpense.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/addexpense.jsp").forward(req, resp);
     }
 
     @Override
@@ -72,6 +72,6 @@ public class AddExpenseController extends HttpServlet {
 
         List<ExpenseTypeModel> expenseTypes = expenseTypeDAO.getAllTypes();
         req.setAttribute("expenseTypeList", expenseTypes);
-        req.getRequestDispatcher("/WEB-INF/pages/addexpense.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/addexpense.jsp").forward(req, resp);
     }
 }
