@@ -1,4 +1,4 @@
-# MoneyHandler
+# 💼 About MoneyHandler
 MoneyHandler is a full-featured personal finance management web application designed to help users track income, expenses, and savings with clarity and control. Built with modern Java technologies (JSP, Servlets, JDBC) and backed by a MySQL database, the platform provides a secure and intuitive experience for both regular users and administrators.
 
 Key features include:
