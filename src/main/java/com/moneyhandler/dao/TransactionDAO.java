@@ -37,7 +37,7 @@ public class TransactionDAO {
     }
 
     /**
-     * Common method to execute monthly aggregation queries.
+     *  method to execute monthly aggregation queries.
      */
     private Map<String, Double> getMonthlyTotals(int userId, String sql) {
         Map<String, Double> monthlyTotals = new LinkedHashMap<>();
@@ -58,6 +58,7 @@ public class TransactionDAO {
         }
         return monthlyTotals;
     }
+    
     public double getTotalAmount(int userId, String type) {
         String sql = "SELECT SUM(amount) FROM transactions WHERE user_id = ? AND type = ?";
         try (Connection conn = DbConfig.getDbConnection();

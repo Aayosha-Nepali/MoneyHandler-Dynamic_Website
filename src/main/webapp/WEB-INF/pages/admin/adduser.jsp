@@ -36,6 +36,40 @@
         <div class="signin-link" style="margin-top: 1rem;">
             <a href="${contextPath}/admin/users">← Back to Users</a>
         </div>
+
+        <!-- User Table Section -->
+        <h3 style="margin-top: 3rem; color: #2c4c3b;">Recently Added Users</h3>
+        <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>DOB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows; replace with JSTL loop if dynamic -->
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>9800000000</td>
+                        <td>2000-01-01</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>9800000001</td>
+                        <td>2002-03-15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Table -->
     </div>
 
     <div class="side-section">

@@ -30,8 +30,10 @@ public class AuthenticationFilter implements Filter {
             resp.sendRedirect(req.getContextPath() + "/login");
         } else if (path.startsWith(req.getContextPath() + "/admin") &&
                 !"admin@moneyhandler.com".equalsIgnoreCase(user.getEmail())) {
-            // Trying to access admin route but not admin
-            resp.sendRedirect(req.getContextPath() + "/login");
+            // Unauthorized admin access — force logout or send to login
+            session.invalidate(); // optional
+            resp.sendRedirect(req.getContextPath() + "/login?unauthorized=true");
+
         } else {
             chain.doFilter(request, response);
         }

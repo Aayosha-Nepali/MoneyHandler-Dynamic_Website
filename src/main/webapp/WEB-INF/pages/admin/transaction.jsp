@@ -16,8 +16,8 @@
     <img src="${contextPath}/resources/images/logo/MoneyHandler_big.png" class="sidebar-logo" alt="MoneyHandler Logo" />
     <ul>
         <li><a href="${contextPath}/admindashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-        <li><a href="${contextPath}/admin/users"><i class="fas fa-users"></i> Users</a></li>
-        <li><a class="active" href="${contextPath}/admin/transactions"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+        <li><a href="${contextPath}/admin/user"><i class="fas fa-users"></i> Users</a></li>
+        <li><a href="${contextPath}/admin/transaction"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
         <li><a href="${contextPath}/admin/categories"><i class="fas fa-list"></i> Categories</a></li>
         <li><a href="${contextPath}/admin/settings"><i class="fas fa-cog"></i> Settings</a></li>
         <li><a href="${contextPath}/admin/contact"><i class="fas fa-envelope"></i> Contact</a></li>

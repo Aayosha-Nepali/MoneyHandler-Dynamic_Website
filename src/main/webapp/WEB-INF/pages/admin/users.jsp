@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Manage Users | MoneyHandler Admin</title>
-    <link rel="stylesheet" href="${contextPath}/css/income.css" />
+    <link rel="stylesheet" href="${contextPath}/css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>

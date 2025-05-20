@@ -120,8 +120,5 @@
     </table>
 </main>
 
-<!-- Footer -->
-<jsp:include page="/WEB-INF/pages/common/footer.jsp" />
-
 </body>
 </html>

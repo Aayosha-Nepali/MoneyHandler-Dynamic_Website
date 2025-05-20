@@ -57,7 +57,7 @@ public class LoginController extends HttpServlet {
             if ("admin@moneyhandler.com".equalsIgnoreCase(email)) {
                 resp.sendRedirect(req.getContextPath() + "/admindashboard");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/userdashboard");
+                resp.sendRedirect(req.getContextPath() + "/user/userdashboard");
             }
         } else {
             req.setAttribute("error", "Invalid email or password.");

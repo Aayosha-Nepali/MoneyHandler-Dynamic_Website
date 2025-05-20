@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Controller to manage contact messages for admin.
  */
-@WebServlet("/admin/contact")
+@WebServlet("/contact")
 public class AdminContactController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class AdminContactController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ContactModel> contacts = contactDAO.getAllContacts();
         req.setAttribute("contacts", contacts);
-        req.getRequestDispatcher("WEB-INF/pages/admin/admin-contact.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/admin/admincontact.jsp").forward(req, resp);
     }
 
     @Override
