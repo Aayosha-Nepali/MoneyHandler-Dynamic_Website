@@ -3,19 +3,19 @@ MoneyHandler is a full-featured personal finance management web application desi
 
 Key features include:
 
-🔐 Secure user registration and login with validation
+    🔐 Secure user registration and login with validation
 
-👥 Role-based access for users and admins
+    👥 Role-based access for users and admins
 
-📊 Interactive dashboards with real-time charts (line & pie graphs)
+    📊 Interactive dashboards with real-time charts (line & pie graphs)
 
-💸 Categorized income and expense tracking
+    💸 Categorized income and expense tracking
 
-🧾 PDF report generation for transactions and messages
+    🧾 PDF report generation for transactions and messages
 
-🖼️ Profile image upload and validation
+    🖼️ Profile image upload and validation
 
-🌐 Responsive and aesthetic UI using custom-designed color palettes
+    🌐 Responsive and aesthetic UI using custom-designed color palettes
 
 Whether you're looking to manage your daily budget or oversee platform-wide financial data as an admin, MoneyHandler offers a streamlined, powerful solution tailored for financial awareness and growth.
 
